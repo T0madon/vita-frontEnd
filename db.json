@@ -1,0 +1,449 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Gabriel Tonon Cimatti",
+      "email": "funcionario@vulcano.com",
+      "password": "123",
+      "role": "employee",
+      "phone": "44998819792"
+    },
+    {
+      "id": "101",
+      "name": "Cliente Exemplo Ltda.",
+      "email": "cliente@vulcano.com",
+      "password": "123",
+      "role": "client",
+      "phone": "(41) 3333-4444"
+    },
+    {
+      "id": "2",
+      "name": "Cliente Exemplo",
+      "email": "cliente@vulcano.com",
+      "password": "123",
+      "role": "client",
+      "phone": "(41) 3333-4444"
+    },
+    {
+      "id": "3",
+      "name": "Super Admin",
+      "email": "admin@vulcano.com",
+      "password": "123",
+      "role": "admin",
+      "phone": "44998819791"
+    }
+  ],
+  "projects": [
+    {
+      "id": "3705",
+      "name": "Guibas",
+      "clientId": 2,
+      "startDate": "2025-08-20",
+      "endDate": "2025-08-21",
+      "description": "Proj do guibas",
+      "employeeId": 1,
+      "status": "Em Andamento",
+      "activeStepIndex": 0,
+      "steps": [
+        {
+          "id": 1,
+          "name": "Contrato",
+          "description": "Etapa de assinatura e formalização do contrato.",
+          "requiresDocuments": true
+        },
+        {
+          "id": 2,
+          "name": "Desenvolvimento",
+          "description": "Execução das atividades principais do projeto.",
+          "requiresDocuments": false
+        },
+        {
+          "name": "Etapa adicional",
+          "description": "add",
+          "requiresDocuments": true,
+          "id": 1755693689019
+        },
+        {
+          "id": 3,
+          "name": "Conclusão",
+          "description": "Entrega final e encerramento do projeto.",
+          "requiresDocuments": false
+        }
+      ]
+    },
+    {
+      "id": "5108",
+      "name": "Aparece",
+      "clientId": 101,
+      "startDate": "2025-08-22",
+      "endDate": "2025-08-23",
+      "description": "Aparece",
+      "employeeId": 1,
+      "status": "Em Andamento",
+      "activeStepIndex": 0,
+      "steps": [
+        {
+          "id": 1,
+          "name": "Contrato",
+          "description": "Etapa de assinatura e formalização do contrato.",
+          "requiresDocuments": true
+        },
+        {
+          "name": "AParece",
+          "description": "Sim",
+          "requiresDocuments": true,
+          "id": 1755873466624
+        },
+        {
+          "id": 2,
+          "name": "Desenvolvimento",
+          "description": "Execução das atividades principais do projeto.",
+          "requiresDocuments": false
+        },
+        {
+          "id": 3,
+          "name": "Conclusão",
+          "description": "Entrega final e encerramento do projeto.",
+          "requiresDocuments": false
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "id": "2",
+      "name": "Indústria Metalmecânica XYZ",
+      "cnpj": "12.345.678/0001-99",
+      "phone": "(42) 99999-8888",
+      "email": "contato@induxyz.com"
+    },
+    {
+      "id": "101",
+      "name": "O segundo",
+      "cnpj": "12.345.678/0001-99",
+      "phone": "(41) 3333-4444",
+      "email": "cliente@vulcano.com"
+    },
+    {
+      "id": "aa0f",
+      "role": "client",
+      "name": "cliente 123",
+      "cpf": "088.601.089-69",
+      "razaoSocial": "",
+      "cnpj": "",
+      "phone": "(44) 99881-9791",
+      "email": "cbadm@email.com",
+      "password": "123"
+    }
+  ],
+  "documents": [
+    {
+      "id": "0b2a",
+      "name": "Youtubao",
+      "uploadDate": "2025-08-22T01:11:59.382Z",
+      "uploadedBy": "Gabriel Tonon Cimatti",
+      "projectId": "5423",
+      "etapaId": 1,
+      "url": "https://www.youtube.com/"
+    },
+    {
+      "id": "d968",
+      "name": "Comprovante_04-08-2025_204126.pdf",
+      "uploadDate": "2025-08-22T01:12:14.364Z",
+      "uploadedBy": "Gabriel Tonon Cimatti",
+      "projectId": "5423",
+      "etapaId": 1,
+      "url": "blob:http://localhost:3000/ba9e40a2-5738-47b0-a6c0-f9a5fcaa623b",
+      "isLocalFile": true
+    },
+    {
+      "id": "ce0a",
+      "name": "Func add o link",
+      "uploadDate": "2025-08-22T14:43:38.877Z",
+      "uploadedBy": "Gabriel Tonon Cimatti",
+      "projectId": "5108",
+      "etapaId": 1,
+      "url": "https://classroom.google.com/u/2/w/Nzg5Mzk5NTE2NjQ4/t/all"
+    },
+    {
+      "id": "2105",
+      "name": "Func add o arquivo",
+      "uploadDate": "2025-08-22T14:44:01.664Z",
+      "uploadedBy": "Gabriel Tonon Cimatti",
+      "projectId": "5108",
+      "etapaId": 1,
+      "url": "blob:http://localhost:3000/dd536f37-093d-4f60-8018-ce11b0191747",
+      "isLocalFile": true
+    },
+    {
+      "id": "240f",
+      "name": "Cliente add link",
+      "uploadDate": "2025-08-22T14:44:48.352Z",
+      "uploadedBy": "Cliente Exemplo Ltda.",
+      "projectId": "5108",
+      "etapaId": 1755873466624,
+      "url": "https://classroom.google.com/u/2/w/Nzg5Mzk5NTE2NjQ4/t/all"
+    },
+    {
+      "id": "2e98",
+      "name": "Cliente add arquivo",
+      "uploadDate": "2025-08-22T14:45:07.340Z",
+      "uploadedBy": "Cliente Exemplo Ltda.",
+      "projectId": "5108",
+      "etapaId": 1755873466624,
+      "url": "blob:http://localhost:3000/87f9588d-1e3e-420b-89ce-382e6c231931",
+      "isLocalFile": true
+    },
+    {
+      "id": "6387",
+      "name": "admin",
+      "uploadDate": "2025-08-25T23:11:09.378Z",
+      "uploadedBy": "Super Admin",
+      "projectId": "5108",
+      "etapaId": 1,
+      "url": "https://www.4devs.com.br/gerador_de_cpf"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "5364",
+      "userId": 1,
+      "message": "O projeto \"Guibas\" foi criado com sucesso.",
+      "projectId": "3705",
+      "read": false,
+      "createdAt": "2025-08-20T12:41:33.617Z"
+    },
+    {
+      "id": "5cbe",
+      "userId": 1,
+      "message": "O projeto \"asdasd\" foi criado com sucesso.",
+      "projectId": "5423",
+      "read": false,
+      "createdAt": "2025-08-20T22:38:37.024Z"
+    },
+    {
+      "id": "f3de",
+      "userId": 1,
+      "message": "O projeto \"Aparece\" foi criado com sucesso.",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-22T14:37:49.931Z"
+    },
+    {
+      "id": "af09",
+      "userId": 1,
+      "message": "O projeto \"Aparece\" avançou para a etapa \"AParece\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-23T19:00:01.326Z"
+    },
+    {
+      "id": "eab4",
+      "userId": 2763,
+      "message": "O projeto \"Proj by func by adm\" foi criado com sucesso.",
+      "projectId": "889d",
+      "read": false,
+      "createdAt": "2025-08-25T22:10:37.455Z"
+    },
+    {
+      "id": "5fb6",
+      "userId": 2763,
+      "message": "O projeto \"Proj by func by adm\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "889d",
+      "read": false,
+      "createdAt": "2025-08-25T22:13:24.190Z"
+    },
+    {
+      "id": "c340",
+      "userId": 7,
+      "message": "O projeto \"Proj by func by adm\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "889d",
+      "read": false,
+      "createdAt": "2025-08-25T22:13:24.205Z"
+    },
+    {
+      "id": "c9c5",
+      "userId": 1,
+      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-25T22:34:00.892Z"
+    },
+    {
+      "id": "14ff",
+      "userId": 101,
+      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-25T22:34:00.904Z"
+    },
+    {
+      "id": "d47e",
+      "userId": "3",
+      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-25T22:34:00.920Z"
+    },
+    {
+      "id": "74d2",
+      "userId": 1,
+      "message": "O projeto \"burack\" regrediu para a etapa \"Entrega de documentos\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:35:51.782Z"
+    },
+    {
+      "id": "bd13",
+      "userId": 2,
+      "message": "O projeto \"burack\" regrediu para a etapa \"Entrega de documentos\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:35:51.796Z"
+    },
+    {
+      "id": "f158",
+      "userId": "3",
+      "message": "O projeto \"burack\" regrediu para a etapa \"Entrega de documentos\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:35:51.809Z"
+    },
+    {
+      "id": "9907",
+      "userId": 1,
+      "message": "O projeto \"burack\" avançou para a etapa \"Conclusão\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:50:49.530Z"
+    },
+    {
+      "id": "bca7",
+      "userId": 2,
+      "message": "O projeto \"burack\" avançou para a etapa \"Conclusão\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:50:49.543Z"
+    },
+    {
+      "id": "e269",
+      "userId": "3",
+      "message": "O projeto \"burack\" avançou para a etapa \"Conclusão\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:50:49.563Z"
+    },
+    {
+      "id": "20ac",
+      "userId": 1,
+      "message": "O projeto \"burack\" regrediu para a etapa \"Entrega de documentos\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:51:07.766Z"
+    },
+    {
+      "id": "7a22",
+      "userId": 2,
+      "message": "O projeto \"burack\" regrediu para a etapa \"Entrega de documentos\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:51:07.778Z"
+    },
+    {
+      "id": "3f98",
+      "userId": "3",
+      "message": "O projeto \"burack\" regrediu para a etapa \"Entrega de documentos\".",
+      "projectId": "c481",
+      "read": false,
+      "createdAt": "2025-08-26T00:51:07.792Z"
+    },
+    {
+      "id": "f416",
+      "userId": 1,
+      "message": "O projeto \"Proj do Sabão\" foi criado com sucesso.",
+      "projectId": "e018",
+      "read": false,
+      "createdAt": "2025-08-26T01:29:49.135Z"
+    },
+    {
+      "id": "2db3",
+      "userId": 1,
+      "message": "O projeto \"Proj do sabão\" foi criado com sucesso.",
+      "projectId": "7000",
+      "read": false,
+      "createdAt": "2025-08-26T01:31:52.384Z"
+    },
+    {
+      "id": "2122",
+      "userId": 1,
+      "message": "O projeto \"Aparece\" avançou para a etapa \"AParece\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-27T01:15:32.298Z"
+    },
+    {
+      "id": "444b",
+      "userId": 101,
+      "message": "O projeto \"Aparece\" avançou para a etapa \"AParece\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-27T01:15:32.314Z"
+    },
+    {
+      "id": "0723",
+      "userId": "3",
+      "message": "O projeto \"Aparece\" avançou para a etapa \"AParece\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-27T01:15:32.334Z"
+    },
+    {
+      "id": "6f34",
+      "userId": 1,
+      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-27T01:15:34.526Z"
+    },
+    {
+      "id": "184c",
+      "userId": 101,
+      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-27T01:15:34.534Z"
+    },
+    {
+      "id": "95e6",
+      "userId": "3",
+      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
+      "projectId": "5108",
+      "read": false,
+      "createdAt": "2025-08-27T01:15:34.547Z"
+    },
+    {
+      "id": "fe89",
+      "userId": 0,
+      "message": "O projeto \"apaaaarece\" foi criado com sucesso.",
+      "projectId": "58df",
+      "read": false,
+      "createdAt": "2025-08-27T01:18:05.304Z"
+    },
+    {
+      "id": "f05d",
+      "userId": 1,
+      "message": "O projeto \"excluir\" foi criado com sucesso.",
+      "projectId": "f484",
+      "read": false,
+      "createdAt": "2025-08-27T11:09:21.118Z"
+    },
+    {
+      "id": "b937",
+      "userId": 1,
+      "message": "O projeto \"excl 2\" foi criado com sucesso.",
+      "projectId": "e139",
+      "read": false,
+      "createdAt": "2025-08-27T11:09:46.346Z"
+    }
+  ]
+}

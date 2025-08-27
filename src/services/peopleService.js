@@ -2,30 +2,24 @@ import api from "./api";
 
 export const getAllPeople = async () => {
     try {
-        const [usersResponse, clientsResponse] = await Promise.all([
-            api.get("/users"),
-            api.get("/clients"),
-        ]);
-        return { users: usersResponse.data, clients: clientsResponse.data };
+        const response = await api.get("/users");
+        return response.data;
     } catch (error) {
         console.error("Erro ao buscar pessoas:", error);
-        return { users: [], clients: [] };
+        return []; // Retorna uma lista vazia em caso de erro
     }
 };
 
-// Esta função fará o pré-registo
+// Pré-regista qualquer pessoa (cliente, funcionário, admin) na tabela `/users`
 export const preRegisterPerson = async (personData) => {
     const { personType, ...dataToSave } = personData;
-    // Por agora, vamos criar um utilizador simples. A lógica PF/PJ pode ser adicionada depois.
-    // O objeto `personData` virá do formulário do admin.
+    const finalData = {
+        ...dataToSave,
+        id: Date.now().toString(), // Garante um ID de texto único
+    };
+
     try {
-        let response;
-        if (dataToSave.role === "client") {
-            response = await api.post("/clients", dataToSave);
-        } else {
-            // para 'employee' e 'admin'
-            response = await api.post("/users", dataToSave);
-        }
+        const response = await api.post("/users", finalData);
         return response.data;
     } catch (error) {
         console.error("Erro no pré-registo:", error);
@@ -33,15 +27,26 @@ export const preRegisterPerson = async (personData) => {
     }
 };
 
-// Esta função irá finalizar o registo
+// Finaliza o registo de qualquer pessoa na tabela `/users`
 export const completeRegistration = async (userId, role, registrationData) => {
-    const endpoint =
-        role === "client" ? `/clients/${userId}` : `/users/${userId}`;
+    const endpoint = `/users/${userId}`;
     try {
         const response = await api.patch(endpoint, registrationData);
         return response.data;
     } catch (error) {
         console.error("Erro ao completar registo:", error);
+        throw error;
+    }
+};
+
+// Atualiza o perfil de qualquer pessoa na tabela `/users`
+export const updatePerson = async (person, dataToUpdate) => {
+    const endpoint = `/users/${person.id}`;
+    try {
+        const response = await api.patch(endpoint, dataToUpdate);
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao atualizar pessoa:", error);
         throw error;
     }
 };

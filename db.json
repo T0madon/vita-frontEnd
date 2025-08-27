@@ -31,6 +31,28 @@
       "password": "123",
       "role": "admin",
       "phone": "44998819791"
+    },
+    {
+      "id": "1756297921160",
+      "role": "client",
+      "name": "ex 1",
+      "cpf": "08860108969",
+      "razaoSocial": "",
+      "cnpj": "",
+      "phone": "(44) 99881-9791",
+      "email": "exc1@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "1756298004565",
+      "role": "employee",
+      "name": "funcio by adm",
+      "cpf": "",
+      "razaoSocial": "",
+      "cnpj": "",
+      "phone": "(44) 99881-9791",
+      "email": "fnarioByadm@gmail.com",
+      "password": "123"
     }
   ],
   "projects": [
@@ -107,6 +129,43 @@
           "requiresDocuments": false
         }
       ]
+    },
+    {
+      "id": "7f57",
+      "name": "jaime 1",
+      "clientId": 1756297921160,
+      "startDate": "2025-08-28",
+      "endDate": "",
+      "description": "asd",
+      "employeeId": 1756298004565,
+      "status": "Em Andamento",
+      "activeStepIndex": 1,
+      "steps": [
+        {
+          "id": 1,
+          "name": "Contrato",
+          "description": "Etapa de assinatura e formalização do contrato.",
+          "requiresDocuments": true
+        },
+        {
+          "id": 2,
+          "name": "Desenvolvimento",
+          "description": "Execução das atividades principais do projeto.",
+          "requiresDocuments": false
+        },
+        {
+          "name": "asd",
+          "description": "asd",
+          "requiresDocuments": true,
+          "id": 1756298254493
+        },
+        {
+          "id": 3,
+          "name": "Conclusão",
+          "description": "Entrega final e encerramento do projeto.",
+          "requiresDocuments": false
+        }
+      ]
     }
   ],
   "clients": [
@@ -125,15 +184,11 @@
       "email": "cliente@vulcano.com"
     },
     {
-      "id": "aa0f",
-      "role": "client",
-      "name": "cliente 123",
-      "cpf": "088.601.089-69",
-      "razaoSocial": "",
-      "cnpj": "",
+      "id": "1756297921160",
+      "name": "ex 1",
+      "cpf": "08860108969",
       "phone": "(44) 99881-9791",
-      "email": "cbadm@email.com",
-      "password": "123"
+      "email": "exc1@gmail.com"
     }
   ],
   "documents": [
@@ -205,94 +260,6 @@
     }
   ],
   "notifications": [
-    {
-      "id": "5364",
-      "userId": 1,
-      "message": "O projeto \"Guibas\" foi criado com sucesso.",
-      "projectId": "3705",
-      "read": false,
-      "createdAt": "2025-08-20T12:41:33.617Z"
-    },
-    {
-      "id": "5cbe",
-      "userId": 1,
-      "message": "O projeto \"asdasd\" foi criado com sucesso.",
-      "projectId": "5423",
-      "read": false,
-      "createdAt": "2025-08-20T22:38:37.024Z"
-    },
-    {
-      "id": "f3de",
-      "userId": 1,
-      "message": "O projeto \"Aparece\" foi criado com sucesso.",
-      "projectId": "5108",
-      "read": false,
-      "createdAt": "2025-08-22T14:37:49.931Z"
-    },
-    {
-      "id": "af09",
-      "userId": 1,
-      "message": "O projeto \"Aparece\" avançou para a etapa \"AParece\".",
-      "projectId": "5108",
-      "read": false,
-      "createdAt": "2025-08-23T19:00:01.326Z"
-    },
-    {
-      "id": "eab4",
-      "userId": 2763,
-      "message": "O projeto \"Proj by func by adm\" foi criado com sucesso.",
-      "projectId": "889d",
-      "read": false,
-      "createdAt": "2025-08-25T22:10:37.455Z"
-    },
-    {
-      "id": "5fb6",
-      "userId": 2763,
-      "message": "O projeto \"Proj by func by adm\" avançou para a etapa \"Desenvolvimento\".",
-      "projectId": "889d",
-      "read": false,
-      "createdAt": "2025-08-25T22:13:24.190Z"
-    },
-    {
-      "id": "c340",
-      "userId": 7,
-      "message": "O projeto \"Proj by func by adm\" avançou para a etapa \"Desenvolvimento\".",
-      "projectId": "889d",
-      "read": false,
-      "createdAt": "2025-08-25T22:13:24.205Z"
-    },
-    {
-      "id": "c9c5",
-      "userId": 1,
-      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
-      "projectId": "5108",
-      "read": false,
-      "createdAt": "2025-08-25T22:34:00.892Z"
-    },
-    {
-      "id": "14ff",
-      "userId": 101,
-      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
-      "projectId": "5108",
-      "read": false,
-      "createdAt": "2025-08-25T22:34:00.904Z"
-    },
-    {
-      "id": "d47e",
-      "userId": "3",
-      "message": "O projeto \"Aparece\" regrediu para a etapa \"Contrato\".",
-      "projectId": "5108",
-      "read": false,
-      "createdAt": "2025-08-25T22:34:00.920Z"
-    },
-    {
-      "id": "74d2",
-      "userId": 1,
-      "message": "O projeto \"burack\" regrediu para a etapa \"Entrega de documentos\".",
-      "projectId": "c481",
-      "read": false,
-      "createdAt": "2025-08-26T00:35:51.782Z"
-    },
     {
       "id": "bd13",
       "userId": 2,
@@ -444,6 +411,38 @@
       "projectId": "e139",
       "read": false,
       "createdAt": "2025-08-27T11:09:46.346Z"
+    },
+    {
+      "id": "5047",
+      "userId": 1756298004565,
+      "message": "O projeto \"jaime 1\" foi criado com sucesso.",
+      "projectId": "7f57",
+      "read": false,
+      "createdAt": "2025-08-27T12:37:35.885Z"
+    },
+    {
+      "id": "0429",
+      "userId": 1756298004565,
+      "message": "O projeto \"jaime 1\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "7f57",
+      "read": false,
+      "createdAt": "2025-08-27T12:40:24.796Z"
+    },
+    {
+      "id": "6a5b",
+      "userId": 1756297921160,
+      "message": "O projeto \"jaime 1\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "7f57",
+      "read": false,
+      "createdAt": "2025-08-27T12:40:24.813Z"
+    },
+    {
+      "id": "fc47",
+      "userId": "3",
+      "message": "O projeto \"jaime 1\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "7f57",
+      "read": false,
+      "createdAt": "2025-08-27T12:40:24.829Z"
     }
   ]
 }

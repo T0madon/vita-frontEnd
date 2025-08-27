@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import { getProjectsForUser } from "../../../services/projectService";
+import {
+    getProjectsForUser,
+    getAllProjectsWithData,
+} from "../../../services/projectService";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
 
@@ -162,11 +165,20 @@ const SearchPage = () => {
 
     // Executa a filtragem
     useEffect(() => {
-        filterProjects();
-    }, [searchTerm, statusFilters, allProjects, filterProjects]);
+        if (user) {
+            const fetchFunction =
+                user.role === "admin"
+                    ? getAllProjectsWithData
+                    : () => getProjectsForUser(user);
+            fetchFunction().then((data) => {
+                setAllProjects(data);
+                setFilteredProjects(data);
+            });
+        }
+    }, [user]);
 
     const handleRowClick = (projectId) => {
-        navigate(`/employee/projeto/${projectId}`);
+        navigate(`/${user.role}/projeto/${projectId}`);
     };
 
     return (
@@ -200,7 +212,7 @@ const SearchPage = () => {
                 </FilterPanel>
             )}
 
-            <TableWrapper>
+            {/* <TableWrapper>
                 <div
                     style={{
                         backgroundColor: "white",
@@ -232,6 +244,17 @@ const SearchPage = () => {
                                 >
                                     Nome do Projeto
                                 </th>
+                                {user.role === "client" ? (
+                                    <>
+                                        <th>Funcionário Responsável</th>
+                                        <th>Telefone do Funcionário</th>
+                                    </>
+                                ) : (
+                                    <>
+                                        <th>Cliente</th>
+                                        <th>Telefone do Cliente</th>
+                                    </>
+                                )}
                                 <th
                                     style={{
                                         padding: "12px 15px",
@@ -353,6 +376,62 @@ const SearchPage = () => {
                         </tbody>
                     </table>
                 </div>
+            </TableWrapper> */}
+
+            <TableWrapper>
+                <StyledTable>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome do Projeto</th>
+                            {user.role === "client" ? (
+                                <>
+                                    <th>Funcionário Responsável</th>
+                                    <th>Telefone do Funcionário</th>
+                                </>
+                            ) : (
+                                <>
+                                    <th>Cliente</th>
+                                    <th>Telefone do Cliente</th>
+                                </>
+                            )}
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredProjects.map((project) => (
+                            <tr
+                                key={project.id}
+                                onClick={() => handleRowClick(project.id)}
+                            >
+                                <td>{project.id}</td>
+                                <td>{project.name}</td>
+                                {user.role === "client" ? (
+                                    <>
+                                        <td>
+                                            {project.employee?.name || "N/A"}
+                                        </td>
+                                        <td>
+                                            {project.employee?.phone || "N/A"}
+                                        </td>
+                                    </>
+                                ) : (
+                                    <>
+                                        <td>{project.client?.name || "N/A"}</td>
+                                        <td>
+                                            {project.client?.phone || "N/A"}
+                                        </td>
+                                    </>
+                                )}
+                                <td>
+                                    <StatusBadge status={project.status}>
+                                        {project.status}
+                                    </StatusBadge>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </StyledTable>
             </TableWrapper>
         </PageWrapper>
     );

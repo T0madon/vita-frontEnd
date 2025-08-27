@@ -5,94 +5,134 @@ import { createNotification } from "./notificationService";
  * Busca todos os projetos. Futuramente, pode receber filtros como parâmetros.
  * @returns {Promise<Array>} Uma promessa que resolve para um array de projetos.
  */
-export const getProjectsForUser = async (user) => {
-    if (!user) return [];
 
-    // Define o filtro e o que expandir com base no perfil
-    const filter =
-        user.role === "employee"
-            ? `employeeId=${user.id}`
-            : `clientId=${user.id}`;
-
+const fetchAndAssociateData = async (projectPromise) => {
     try {
-        // 1. Fazemos duas chamadas à API em simultâneo para otimizar o tempo.
-        // const [projectsResponse, usersResponse] = await Promise.all([
-        //     api.get(`/projects?${filter}`),
-        //     api.get("/users"),
-        // ]);
-        const projectsResponse = await api.get(`/projects?${filter}`);
-        const projects = projectsResponse.data;
-
-        // const users = usersResponse.data;
-        const [usersResponse, clientsResponse] = await Promise.all([
+        const [projectsResponse, usersResponse] = await Promise.all([
+            projectPromise,
             api.get("/users"),
-            api.get("/clients"),
         ]);
 
-        const userMap = usersResponse.data.reduce((map, u) => {
-            map[u.id] = u;
+        const projects = projectsResponse.data;
+        const users = usersResponse.data;
+        const userMap = users.reduce((map, user) => {
+            map[user.id] = user;
             return map;
         }, {});
 
-        const clientMap = clientsResponse.data.reduce((map, c) => {
-            map[c.id] = c;
-            return map;
-        }, {});
-
-        // Junta os dados manualmente para garantir
-        const projectsWithData = projects.map((project) => ({
+        return projects.map((project) => ({
             ...project,
             client: userMap[project.clientId],
             employee: userMap[project.employeeId],
         }));
-
-        return projectsWithData;
     } catch (error) {
-        console.error(
-            "Erro ao buscar e combinar dados de projetos e clientes:",
-            error
-        );
+        console.error("Erro ao buscar e associar dados de projetos:", error);
         return [];
     }
 };
 
+export const getProjectsForUser = async (user) => {
+    if (!user) return [];
+    const filter =
+        user.role === "employee"
+            ? `employeeId=${user.id}`
+            : `clientId=${user.id}`;
+    return fetchAndAssociateData(api.get(`/projects?${filter}`));
+};
+
+// Busca TODOS os projetos para o admin
 export const getAllProjectsWithData = async () => {
-    try {
-        // Busca todos os projetos e expande tanto o cliente como o funcionário
-        const [projectsResponse, usersResponse, clientsResponse] =
-            await Promise.all([
-                api.get("/projects"),
-                api.get("/users"),
-                api.get("/clients"),
-            ]);
-
-        const projects = projectsResponse.data;
-        const users = usersResponse.data;
-        const clients = clientsResponse.data;
-
-        // Criamos mapas para facilitar a busca
-        const userMap = users.reduce((map, u) => {
-            map[u.id] = u;
-            return map;
-        }, {});
-        const clientMap = clients.reduce((map, c) => {
-            map[c.id] = c;
-            return map;
-        }, {});
-
-        // Juntamos os dados manualmente
-        const projectsWithData = projects.map((project) => ({
-            ...project,
-            employee: userMap[project.employeeId],
-            client: clientMap[project.clientId],
-        }));
-
-        return projectsWithData;
-    } catch (error) {
-        console.error("Erro ao buscar todos os projetos:", error);
-        return [];
-    }
+    return fetchAndAssociateData(api.get("/projects"));
 };
+
+// export const getProjectsForUser = async (user) => {
+//     if (!user) return [];
+
+//     // Define o filtro e o que expandir com base no perfil
+//     const filter =
+//         user.role === "employee"
+//             ? `employeeId=${user.id}`
+//             : `clientId=${user.id}`;
+
+//     // try {
+//     //     // 1. Fazemos duas chamadas à API em simultâneo para otimizar o tempo.
+//     //     // const [projectsResponse, usersResponse] = await Promise.all([
+//     //     //     api.get(`/projects?${filter}`),
+//     //     //     api.get("/users"),
+//     //     // ]);
+//     //     const projectsResponse = await api.get(`/projects?${filter}`);
+//     //     const projects = projectsResponse.data;
+
+//     //     // const users = usersResponse.data;
+//     //     const [usersResponse, clientsResponse] = await Promise.all([
+//     //         api.get("/users"),
+//     //         api.get("/clients"),
+//     //     ]);
+
+//     //     const userMap = usersResponse.data.reduce((map, u) => {
+//     //         map[u.id] = u;
+//     //         return map;
+//     //     }, {});
+
+//     //     const clientMap = clientsResponse.data.reduce((map, c) => {
+//     //         map[c.id] = c;
+//     //         return map;
+//     //     }, {});
+
+//     //     // Junta os dados manualmente para garantir
+//     //     const projectsWithData = projects.map((project) => ({
+//     //         ...project,
+//     //         client: userMap[project.clientId],
+//     //         employee: userMap[project.employeeId],
+//     //     }));
+
+//     //     return projectsWithData;
+//     // } catch (error) {
+//     //     console.error(
+//     //         "Erro ao buscar e combinar dados de projetos e clientes:",
+//     //         error
+//     //     );
+//     //     return [];
+//     // }
+// };
+
+// export const getAllProjectsWithData = async () => {
+//     try {
+//         // Busca todos os projetos e expande tanto o cliente como o funcionário
+//         const [projectsResponse, usersResponse, clientsResponse] =
+//             await Promise.all([
+//                 api.get("/projects"),
+//                 api.get("/users"),
+//                 api.get("/clients"),
+//             ]);
+
+//         const projects = projectsResponse.data;
+//         const users = usersResponse.data;
+//         const clients = clientsResponse.data;
+
+//         // Criamos mapas para facilitar a busca
+//         const userMap = users.reduce((map, u) => {
+//             map[u.id] = u;
+//             return map;
+//         }, {});
+//         const clientMap = clients.reduce((map, c) => {
+//             map[c.id] = c;
+//             return map;
+//         }, {});
+
+//         // Juntamos os dados manualmente
+//         const projectsWithData = projects.map((project) => ({
+//             ...project,
+//             employee: userMap[project.employeeId],
+//             client: clientMap[project.clientId],
+//         }));
+
+//         return projectsWithData;
+//     } catch (error) {
+//         console.error("Erro ao buscar todos os projetos:", error);
+//         return [];
+//     }
+// };
 
 /**
  * Busca um projeto específico pelo seu ID.

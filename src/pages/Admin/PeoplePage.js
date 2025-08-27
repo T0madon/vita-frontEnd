@@ -80,9 +80,7 @@ const StyledTable = styled.table`
     }
 `;
 
-const PeopleList = ({ people, type }) => {
-    const [searchTerm, setSearchTerm] = useState("");
-
+const PeopleList = ({ people, searchTerm }) => {
     const filteredPeople = useMemo(
         () =>
             people.filter((person) =>
@@ -92,7 +90,6 @@ const PeopleList = ({ people, type }) => {
             ),
         [people, searchTerm]
     );
-    // Componente simples para listar pessoas
     return (
         <TableWrapper>
             <StyledTable>
@@ -119,26 +116,25 @@ const PeopleList = ({ people, type }) => {
 
 const PeoplePage = () => {
     const navigate = useNavigate();
-    const [allPeople, setAllPeople] = useState({ users: [], clients: [] });
+    // 1. O estado agora armazena uma única lista de pessoas
+    const [allPeople, setAllPeople] = useState([]);
     const [activeTab, setActiveTab] = useState("clients");
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
+        // A função getAllPeople agora retorna uma lista simples
         getAllPeople().then((data) => setAllPeople(data));
     }, []);
 
-    const employees = allPeople.users.filter((u) => u.role === "employee");
-    const admins = allPeople.users.filter((u) => u.role === "admin");
+    // 2. A lógica de filtro agora acontece sobre a mesma lista 'allPeople'
+    const clients = allPeople.filter((p) => p.role === "client");
+    const employees = allPeople.filter((p) => p.role === "employee");
+    const admins = allPeople.filter((p) => p.role === "admin");
 
     const renderList = () => {
         switch (activeTab) {
             case "clients":
-                return (
-                    <PeopleList
-                        people={allPeople.clients}
-                        searchTerm={searchTerm}
-                    />
-                );
+                return <PeopleList people={clients} searchTerm={searchTerm} />;
             case "employees":
                 return (
                     <PeopleList people={employees} searchTerm={searchTerm} />
@@ -179,24 +175,6 @@ const PeoplePage = () => {
                     Admins
                 </TabButton>
             </TabsContainer>
-
-            {/* <div>
-                <button onClick={() => setActiveTab("clients")}>
-                    Clientes
-                </button>
-                <button onClick={() => setActiveTab("employees")}>
-                    Funcionários
-                </button>
-                <button onClick={() => setActiveTab("admins")}>Admins</button>
-            </div> */}
-
-            {/* <div style={{ marginTop: "20px" }}>
-                {activeTab === "clients" && (
-                    <PeopleList people={allPeople.clients} />
-                )}
-                {activeTab === "employees" && <PeopleList people={employees} />}
-                {activeTab === "admins" && <PeopleList people={admins} />}
-            </div> */}
 
             <SearchInput
                 type="text"

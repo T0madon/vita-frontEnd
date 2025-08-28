@@ -302,7 +302,9 @@ const SearchPage = () => {
                                             borderBottom: "1px solid #eee",
                                         }}
                                     >
-                                        {project.client?.name || "N/A"}
+                                        {project.client?.name ||
+                                            project.client?.razaoSocial ||
+                                            "N/A"}
                                     </td>
                                     <td
                                         style={{

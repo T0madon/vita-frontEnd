@@ -154,7 +154,8 @@ const CreateProjectPage = () => {
                         </option>
                         {clients.map((client) => (
                             <option key={client.id} value={client.id}>
-                                {client.name} - {client.cnpj || client.cpf}
+                                {client.name || client.razaoSocial} -{" "}
+                                {client.cnpj || client.cpf}
                             </option>
                         ))}
                     </Select>

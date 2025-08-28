@@ -151,8 +151,15 @@ const SearchPage = () => {
                 (p) =>
                     p.name.toLowerCase().includes(lowercasedTerm) ||
                     p.id.toLowerCase().includes(lowercasedTerm) ||
-                    (p.client?.name &&
-                        p.client.name.toLowerCase().includes(lowercasedTerm))
+                    (
+                        p.client?.name &&
+                        p.client.name.toLowerCase().includes(lowercasedTerm)
+                    )(
+                        p.client?.razaoSocial &&
+                            p.client.razaoSocial
+                                .toLowerCase()
+                                .includes(lowercasedTerm)
+                    )
             );
         }
 
@@ -417,7 +424,11 @@ const SearchPage = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <td>{project.client?.name || "N/A"}</td>
+                                        <td>
+                                            {project.client?.name ||
+                                                project.client?.razaoSocial ||
+                                                "N/A"}
+                                        </td>
                                         <td>
                                             {project.client?.phone || "N/A"}
                                         </td>

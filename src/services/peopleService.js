@@ -4,9 +4,14 @@ export const getAllPeople = async () => {
     try {
         const response = await api.get("/users");
         return response.data;
+        // const [usersResponse, clientsResponse] = await Promise.all([
+        //     api.get("/users"),
+        //     api.get("/clients"),
+        // ]);
+        // return { users: usersResponse.data, clients: clientsResponse.data };
     } catch (error) {
         console.error("Erro ao buscar pessoas:", error);
-        return []; // Retorna uma lista vazia em caso de erro
+        return { users: [], clients: [] }; // Retorna listas vazias em caso de erro
     }
 };
 
@@ -19,8 +24,25 @@ export const preRegisterPerson = async (personData) => {
     };
 
     try {
-        const response = await api.post("/users", finalData);
-        return response.data;
+        if (finalData.role === "client") {
+            // CORREÇÃO: Se for um cliente, fazemos duas chamadas em simultâneo.
+
+            // 1. Criamos a entrada na tabela 'users' para autenticação.
+            const userPromise = api.post("/users", finalData);
+
+            // 2. Criamos a entrada na tabela 'clients' para dados específicos de cliente.
+            const clientPromise = api.post("/clients", finalData);
+
+            // Aguardamos que ambas as operações terminem
+            await Promise.all([userPromise, clientPromise]);
+
+            // Retornamos os dados para a geração do link de registo
+            return finalData;
+        } else {
+            // Para 'employee' e 'admin', o comportamento mantém-se: criar apenas em 'users'.
+            const response = await api.post("/users", finalData);
+            return response.data;
+        }
     } catch (error) {
         console.error("Erro no pré-registo:", error);
         throw error;

@@ -158,7 +158,11 @@ const AdminHomePage = () => {
                             >
                                 <td>{project.id}</td>
                                 <td>{project.name}</td>
-                                <td>{project.client?.name || "N/A"}</td>
+                                <td>
+                                    {project.client?.name ||
+                                        project.client?.razaoSocial ||
+                                        "N/A"}
+                                </td>
                                 <td>{project.employee?.name || "N/A"}</td>
                                 <td>
                                     <StatusBadge status={project.status}>

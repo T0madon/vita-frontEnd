@@ -70,6 +70,8 @@ const ProfilePage = () => {
         email: "",
         phone: "",
     });
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     useEffect(() => {
         if (user) {
@@ -88,11 +90,28 @@ const ProfilePage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (newPassword && newPassword !== confirmPassword) {
+            alert("As novas senhas não coincidem!");
+            return;
+        }
+
         try {
-            const password = user.password;
-            const updatedUser = await updateUser(user.id, formData);
+            const dataToUpdate = {
+                ...formData,
+            };
+
+            if (newPassword) {
+                dataToUpdate.password = newPassword;
+            }
+
+            // const password = user.password;
+            const updatedUser = await updateUser(user.id, dataToUpdate);
             alert("Perfil atualizado com sucesso!");
-            login(updatedUser.email, password);
+            await login(updatedUser.email, updatedUser.password);
+
+            setNewPassword("");
+            setConfirmPassword("");
         } catch (error) {
             alert("Não foi possível atualizar o perfil.");
         }
@@ -113,6 +132,17 @@ const ProfilePage = () => {
                 </FormGroup>
 
                 <FormGroup>
+                    <Label htmlFor="phone">Telefone</Label>
+                    <Input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                    />
+                </FormGroup>
+
+                <FormGroup fullWidth>
                     <Label htmlFor="email">Email</Label>
                     <Input
                         type="email"
@@ -123,14 +153,37 @@ const ProfilePage = () => {
                     />
                 </FormGroup>
 
+                <hr
+                    style={{
+                        gridColumn: "1 / -1",
+                        border: "none",
+                        borderTop: "1px solid #eee",
+                    }}
+                />
+
                 <FormGroup>
-                    <Label htmlFor="phone">Telefone</Label>
+                    <Label htmlFor="newPassword">Nova Senha</Label>
                     <Input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        type="password"
+                        id="newPassword"
+                        name="newPassword"
+                        placeholder="Deixe em branco para não alterar"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                </FormGroup>
+
+                <FormGroup>
+                    <Label htmlFor="confirmPassword">
+                        Confirmar Nova Senha
+                    </Label>
+                    <Input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirme a nova senha"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </FormGroup>
 

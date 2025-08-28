@@ -9,6 +9,7 @@ import AdminHomePage from "./AdminHomePage";
 import AdminSearchPage from "./AdminSearchPage";
 import PeoplePage from "./PeoplePage";
 import CreatePersonPage from "./CreatePersonPage";
+import EditPersonPage from "./EditPersonPage";
 import EmployeeProjectPage from "../Employee/ProjectPage";
 import ProfilePage from "../Employee/ProfilePage";
 import StepsPage from "../Employee/StepsPage";
@@ -53,6 +54,10 @@ const AdminLayout = () => {
                         <Route
                             path="pessoas/novo"
                             element={<CreatePersonPage />}
+                        />
+                        <Route
+                            path="pessoas/editar/:userId"
+                            element={<EditPersonPage />}
                         />
 
                         <Route

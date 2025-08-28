@@ -80,7 +80,11 @@ const StyledTable = styled.table`
     }
 `;
 
-const PeopleList = ({ people, searchTerm }) => {
+const PeopleList = ({ people, searchTerm, navigate }) => {
+    const handleRowClick = (personId) => {
+        navigate(`/admin/pessoas/editar/${personId}`);
+    };
+
     const filteredPeople = useMemo(
         () =>
             people.filter((person) =>
@@ -90,6 +94,7 @@ const PeopleList = ({ people, searchTerm }) => {
             ),
         [people, searchTerm]
     );
+
     return (
         <TableWrapper>
             <StyledTable>
@@ -102,7 +107,11 @@ const PeopleList = ({ people, searchTerm }) => {
                 </thead>
                 <tbody>
                     {filteredPeople.map((person) => (
-                        <tr key={person.id}>
+                        <tr
+                            key={person.id}
+                            onClick={() => handleRowClick(person.id)}
+                            style={{ cursor: "pointer" }}
+                        >
                             <td>{person.name || person.razaoSocial}</td>
                             <td>{person.email || "A aguardar registo"}</td>
                             <td>{person.phone || "N/A"}</td>
@@ -134,13 +143,29 @@ const PeoplePage = () => {
     const renderList = () => {
         switch (activeTab) {
             case "clients":
-                return <PeopleList people={clients} searchTerm={searchTerm} />;
+                return (
+                    <PeopleList
+                        people={clients}
+                        searchTerm={searchTerm}
+                        navigate={navigate}
+                    />
+                );
             case "employees":
                 return (
-                    <PeopleList people={employees} searchTerm={searchTerm} />
+                    <PeopleList
+                        people={employees}
+                        searchTerm={searchTerm}
+                        navigate={navigate}
+                    />
                 );
             case "admins":
-                return <PeopleList people={admins} searchTerm={searchTerm} />;
+                return (
+                    <PeopleList
+                        people={admins}
+                        searchTerm={searchTerm}
+                        navigate={navigate}
+                    />
+                );
             default:
                 return null;
         }

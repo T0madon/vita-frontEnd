@@ -15,6 +15,16 @@ export const getAllPeople = async () => {
     }
 };
 
+export const getPersonById = async (personId) => {
+    try {
+        const response = await api.get(`/users/${personId}`);
+        return response.data;
+    } catch (error) {
+        console.error(`Erro ao buscar pessoa com ID ${personId}:`, error);
+        return null;
+    }
+};
+
 // Pré-regista qualquer pessoa (cliente, funcionário, admin) na tabela `/users`
 export const preRegisterPerson = async (personData) => {
     const { personType, ...dataToSave } = personData;

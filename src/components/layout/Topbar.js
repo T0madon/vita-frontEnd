@@ -57,7 +57,9 @@ const Topbar = () => {
         <TopbarWrapper>
             <ProfileMenu>
                 <FaUserCircle size={24} color="#800020" />
-                <ProfileName>{user?.name || "Usuário"}</ProfileName>
+                <ProfileName>
+                    {user?.name || user?.razaoSocial || "Usuário"}
+                </ProfileName>
 
                 <ProfileLink to={profilePath}>Meu Perfil</ProfileLink>
 

@@ -82,3 +82,13 @@ export const updatePerson = async (person, dataToUpdate) => {
         throw error;
     }
 };
+
+export const getAdmins = async () => {
+    try {
+        const response = await api.get("/users?role=admin");
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar administradores:", error);
+        return [];
+    }
+};

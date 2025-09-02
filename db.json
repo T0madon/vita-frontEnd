@@ -63,6 +63,17 @@
       "phone": "(44) 99881-9791",
       "email": "slapqtlg@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "1756819657554",
+      "role": "client",
+      "name": "Ezequiel G",
+      "cpf": "088.601.089-12",
+      "razaoSocial": "",
+      "cnpj": "",
+      "phone": "(44) 99881-9712",
+      "email": "ezeqCliente@gmail.com",
+      "password": "123"
     }
   ],
   "projects": [
@@ -148,8 +159,8 @@
       "endDate": "",
       "description": "asd",
       "employeeId": 1756298004565,
-      "status": "Em Andamento",
-      "activeStepIndex": 2,
+      "status": "Concluído",
+      "activeStepIndex": 3,
       "steps": [
         {
           "id": 1,
@@ -213,6 +224,111 @@
           "requiresDocuments": false
         }
       ]
+    },
+    {
+      "id": "2356",
+      "name": "deixar concluído",
+      "clientId": 1756338163903,
+      "startDate": "2025-09-02",
+      "endDate": "2025-09-03",
+      "description": "olá",
+      "employeeId": 1756298004565,
+      "status": "Concluído",
+      "activeStepIndex": 3,
+      "steps": [
+        {
+          "id": 1,
+          "name": "Contrato",
+          "description": "Etapa de assinatura e formalização do contrato.",
+          "requiresDocuments": true
+        },
+        {
+          "id": 2,
+          "name": "Desenvolvimento",
+          "description": "Execução das atividades principais do projeto.",
+          "requiresDocuments": false
+        },
+        {
+          "name": "aaa",
+          "description": "aaa",
+          "requiresDocuments": true,
+          "id": 1756812756985
+        },
+        {
+          "id": 3,
+          "name": "Conclusão",
+          "description": "Entrega final e encerramento do projeto.",
+          "requiresDocuments": false
+        }
+      ]
+    },
+    {
+      "id": "5907",
+      "name": "Proj do ezeq",
+      "clientId": 1756819657554,
+      "startDate": "2025-09-02",
+      "endDate": "2025-09-03",
+      "description": "Proj ezequiel",
+      "employeeId": 1756298004565,
+      "status": "Em Andamento",
+      "activeStepIndex": 1,
+      "steps": [
+        {
+          "id": 1,
+          "name": "Contrato",
+          "description": "Etapa de assinatura e formalização do contrato.",
+          "requiresDocuments": true
+        },
+        {
+          "id": 2,
+          "name": "Desenvolvimento",
+          "description": "Execução das atividades principais do projeto.",
+          "requiresDocuments": false
+        },
+        {
+          "name": "Fundação",
+          "description": "Etapa para fundação",
+          "requiresDocuments": true,
+          "id": 1756819947030
+        },
+        {
+          "id": 3,
+          "name": "Conclusão",
+          "description": "Entrega final e encerramento do projeto.",
+          "requiresDocuments": false
+        }
+      ]
+    },
+    {
+      "id": "889f",
+      "name": "aaa",
+      "clientId": 1756819657554,
+      "startDate": "2025-09-01",
+      "endDate": "2025-09-10",
+      "description": "aaa",
+      "employeeId": 1756298004565,
+      "status": "Em Andamento",
+      "activeStepIndex": 0,
+      "steps": [
+        {
+          "id": 1,
+          "name": "Contrato",
+          "description": "Etapa de assinatura e formalização do contrato.",
+          "requiresDocuments": true
+        },
+        {
+          "id": 2,
+          "name": "Desenvolvimento",
+          "description": "Execução das atividades principais do projeto.",
+          "requiresDocuments": false
+        },
+        {
+          "id": 3,
+          "name": "Conclusão",
+          "description": "Entrega final e encerramento do projeto.",
+          "requiresDocuments": false
+        }
+      ]
     }
   ],
   "clients": [
@@ -244,6 +360,15 @@
       "cpf": "",
       "razaoSocial": "um dois três",
       "cnpj": "48.481.061/0001-44",
+      "phone": "(44) 99881-9791"
+    },
+    {
+      "id": "1756819657554",
+      "role": "client",
+      "name": "Ezequiel",
+      "cpf": "088.601.089-69",
+      "razaoSocial": "",
+      "cnpj": "",
       "phone": "(44) 99881-9791"
     }
   ],
@@ -288,7 +413,7 @@
       "userId": "3",
       "message": "O projeto \"jaime 1\" avançou para a etapa \"Desenvolvimento\".",
       "projectId": "7f57",
-      "read": false,
+      "read": true,
       "createdAt": "2025-08-30T17:20:08.843Z"
     },
     {
@@ -336,7 +461,7 @@
       "userId": "3",
       "message": "O projeto \"jaime 1\" avançou para a etapa \"Desenvolvimento\".",
       "projectId": "7f57",
-      "read": false,
+      "read": true,
       "createdAt": "2025-08-30T17:26:31.075Z"
     },
     {
@@ -424,6 +549,221 @@
       "message": "O usuário um dois três (ID: 1756338163903) solicitou as seguintes alterações de perfil:\n- razaoSocial: de \"um dois três\" para \"um dois três a\"\n- cnpj: de \"48.481.061/0001-45\" para \"48.481.061/0001-44\"\n- phone: de \"(44) 99881-9791\" para \"(44) 99881-9792\"",
       "read": false,
       "createdAt": "2025-09-02T00:34:51.626Z"
+    },
+    {
+      "id": "5fc8",
+      "userId": 1756298004565,
+      "message": "O projeto \"jaime 1\" avançou para a etapa \"Conclusão\".",
+      "projectId": "7f57",
+      "read": true,
+      "createdAt": "2025-09-02T11:31:09.860Z"
+    },
+    {
+      "id": "6e9f",
+      "userId": 1756297921160,
+      "message": "O projeto \"jaime 1\" avançou para a etapa \"Conclusão\".",
+      "projectId": "7f57",
+      "read": false,
+      "createdAt": "2025-09-02T11:31:09.878Z"
+    },
+    {
+      "id": "8ed0",
+      "userId": "3",
+      "message": "O projeto \"jaime 1\" avançou para a etapa \"Conclusão\".",
+      "projectId": "7f57",
+      "read": false,
+      "createdAt": "2025-09-02T11:31:09.896Z"
+    },
+    {
+      "id": "0448",
+      "userId": 1756298004565,
+      "message": "O projeto \"deixar concluído\" foi criado com sucesso.",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:38.669Z"
+    },
+    {
+      "id": "ee2b",
+      "userId": 1756298004565,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:47.404Z"
+    },
+    {
+      "id": "3441",
+      "userId": 1756338163903,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:47.417Z"
+    },
+    {
+      "id": "6351",
+      "userId": "3",
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:47.432Z"
+    },
+    {
+      "id": "45d7",
+      "userId": 1756298004565,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"aaa\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:48.524Z"
+    },
+    {
+      "id": "7ea3",
+      "userId": 1756338163903,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"aaa\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:48.533Z"
+    },
+    {
+      "id": "b5ee",
+      "userId": "3",
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"aaa\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:48.550Z"
+    },
+    {
+      "id": "2a92",
+      "userId": 1756298004565,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Conclusão\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:49.523Z"
+    },
+    {
+      "id": "7302",
+      "userId": 1756338163903,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Conclusão\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:49.531Z"
+    },
+    {
+      "id": "e2f0",
+      "userId": "3",
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Conclusão\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:32:49.547Z"
+    },
+    {
+      "id": "9686",
+      "userId": 1756298004565,
+      "message": "O projeto \"deixar concluído\" regrediu para a etapa \"aaa\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:47:08.716Z"
+    },
+    {
+      "id": "6a87",
+      "userId": 1756338163903,
+      "message": "O projeto \"deixar concluído\" regrediu para a etapa \"aaa\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:47:08.735Z"
+    },
+    {
+      "id": "b3e0",
+      "userId": "3",
+      "message": "O projeto \"deixar concluído\" regrediu para a etapa \"aaa\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:47:08.753Z"
+    },
+    {
+      "id": "5fc8",
+      "userId": 1756298004565,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Conclusão\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:48:51.974Z"
+    },
+    {
+      "id": "6352",
+      "userId": 1756338163903,
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Conclusão\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:48:51.986Z"
+    },
+    {
+      "id": "4000",
+      "userId": "3",
+      "message": "O projeto \"deixar concluído\" avançou para a etapa \"Conclusão\".",
+      "projectId": "2356",
+      "read": false,
+      "createdAt": "2025-09-02T11:48:52.002Z"
+    },
+    {
+      "id": "4dae",
+      "userId": "3",
+      "message": "O usuário Ezequiel (ID: 1756819657554) solicitou as seguintes alterações de perfil:\n- name: de \"Ezequiel\" para \"Ezequiel G\"\n- cpf: de \"088.601.089-69\" para \"088.601.089-12\"\n- phone: de \"(44) 99881-9791\" para \"(44) 99881-9712\"",
+      "read": false,
+      "createdAt": "2025-09-02T13:29:20.416Z"
+    },
+    {
+      "id": "649c",
+      "userId": 1756298004565,
+      "message": "O projeto \"Proj do ezeq\" foi criado com sucesso.",
+      "projectId": "5907",
+      "read": true,
+      "createdAt": "2025-09-02T13:32:56.187Z"
+    },
+    {
+      "id": "bafe",
+      "userId": 1756298004565,
+      "message": "O projeto \"Proj do ezeq\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "5907",
+      "read": false,
+      "createdAt": "2025-09-02T13:34:47.913Z"
+    },
+    {
+      "id": "7a73",
+      "userId": 1756819657554,
+      "message": "O projeto \"Proj do ezeq\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "5907",
+      "read": false,
+      "createdAt": "2025-09-02T13:34:47.924Z"
+    },
+    {
+      "id": "5ff2",
+      "userId": "3",
+      "message": "O projeto \"Proj do ezeq\" avançou para a etapa \"Desenvolvimento\".",
+      "projectId": "5907",
+      "read": false,
+      "createdAt": "2025-09-02T13:34:47.935Z"
+    },
+    {
+      "id": "5896",
+      "userId": 1756298004565,
+      "message": "O projeto \"aaa\" foi criado e está na etapa de \"Contrato\".",
+      "projectId": "889f",
+      "read": false,
+      "createdAt": "2025-09-02T13:46:18.159Z"
+    },
+    {
+      "id": "319b",
+      "userId": 1756819657554,
+      "message": "O projeto \"aaa\" foi criado e está na etapa de \"Contrato\".",
+      "projectId": "889f",
+      "read": false,
+      "createdAt": "2025-09-02T13:46:18.167Z"
+    },
+    {
+      "id": "2e55",
+      "userId": "3",
+      "message": "O projeto \"aaa\" foi criado e está na etapa de \"Contrato\".",
+      "projectId": "889f",
+      "read": false,
+      "createdAt": "2025-09-02T13:46:18.179Z"
     }
   ]
 }

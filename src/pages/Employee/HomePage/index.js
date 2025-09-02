@@ -92,36 +92,66 @@ const HomePage = () => {
     const [projects, setProjects] = useState([]);
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     if (user) {
+    //         const loadProjects = async () => {
+    //             const data = await getProjectsForUser(user);
+
+    //             console.log("DADOS VINDOS DA API:", data);
+
+    //             // 1. Filtra para remover os concluídos
+    //             const activeProjects = data.filter(
+    //                 (p) => p.status !== "Concluído"
+    //             );
+
+    //             // 2. Ordena pelos mais antigos primeiro (data de início)
+    //             const sortedProjects = activeProjects.sort(
+    //                 (a, b) => new Date(a.startDate) - new Date(b.startDate)
+    //             );
+
+    //             // 3. Pega apenas os 5 primeiros
+    //             setProjects(sortedProjects.slice(0, 5));
+    //         };
+    //         loadProjects();
+    //     }
+    // }, [user]);
+
+    // const projectCounts = useMemo(() => {
+    //     return projects.reduce((acc, project) => {
+    //         acc[project.status] = (acc[project.status] || 0) + 1;
+    //         return acc;
+    //     }, {});
+    // }, [projects]);
+
+    const [allProjects, setAllProjects] = useState([]); // NOVO: Estado para todos os projetos
+    const [recentProjects, setRecentProjects] = useState([]); // NOVO: Estado para projetos recentes
+
     useEffect(() => {
         if (user) {
             const loadProjects = async () => {
                 const data = await getProjectsForUser(user);
+                setAllProjects(data); // Guarda todos os projetos para os cards
 
-                console.log("DADOS VINDOS DA API:", data);
-
-                // 1. Filtra para remover os concluídos
+                // Filtra e ordena apenas para a lista de "Projetos Recentes"
                 const activeProjects = data.filter(
                     (p) => p.status !== "Concluído"
                 );
-
-                // 2. Ordena pelos mais antigos primeiro (data de início)
                 const sortedProjects = activeProjects.sort(
                     (a, b) => new Date(a.startDate) - new Date(b.startDate)
                 );
-
-                // 3. Pega apenas os 5 primeiros
-                setProjects(sortedProjects.slice(0, 5));
+                setRecentProjects(sortedProjects.slice(0, 5));
             };
             loadProjects();
         }
     }, [user]);
 
     const projectCounts = useMemo(() => {
-        return projects.reduce((acc, project) => {
+        // Agora faz a contagem a partir de TODOS os projetos
+        return allProjects.reduce((acc, project) => {
             acc[project.status] = (acc[project.status] || 0) + 1;
             return acc;
         }, {});
-    }, [projects]);
+    }, [allProjects]);
 
     const handleRowClick = (projectId) => {
         // Futuramente, navegará para a tela de detalhes do projeto
@@ -166,7 +196,7 @@ const HomePage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {projects.slice(0, 5).map(
+                        {recentProjects.map(
                             (
                                 project // Mostrando apenas os 5 primeiros
                             ) => (

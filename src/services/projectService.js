@@ -159,14 +159,36 @@ export const getProjectById = async (projectId) => {
 export const createProject = async (projectData) => {
     try {
         const response = await api.post("/projects", projectData);
+        const createdProject = response.data;
+        const initialStepName =
+            createdProject.steps[0]?.name || "etapa inicial";
+
+        const message = `O projeto "${createdProject.name}" foi criado e está na etapa de "${initialStepName}".`;
 
         await createNotification({
             userId: projectData.employeeId, // Supondo que o criador é o funcionário
-            message: `O projeto "${projectData.name}" foi criado com sucesso.`,
-            projectId: response.data.id,
+            message,
+            projectId: createdProject.id,
         });
 
-        return response.data;
+        await createNotification({
+            userId: createdProject.clientId,
+            message,
+            projectId: createdProject.id,
+        });
+
+        // Notificar todos os administradores
+        const usersResponse = await api.get("/users?role=admin");
+        const admins = usersResponse.data;
+        for (const admin of admins) {
+            await createNotification({
+                userId: admin.id,
+                message,
+                projectId: createdProject.id,
+            });
+        }
+
+        return createdProject;
     } catch (error) {
         console.error("Erro ao criar projeto:", error);
         throw error;

@@ -132,60 +132,113 @@ const SearchPage = () => {
     };
 
     // Carrega todos os projetos uma vez
-    useEffect(() => {
-        if (user) {
-            getProjectsForUser(user).then((data) => {
-                setAllProjects(data);
-                setFilteredProjects(data);
-            });
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (user) {
+    //         getProjectsForUser(user).then((data) => {
+    //             setAllProjects(data);
+    //             setFilteredProjects(data);
+    //         });
+    //     }
+    // }, [user]);
 
     // Filtra os projetos sempre que o termo de busca mudar
-    const filterProjects = useCallback(() => {
-        let results = [...allProjects];
+    // const filterProjects = useCallback(() => {
+    //     let results = [...allProjects];
 
-        if (searchTerm) {
-            const lowercasedTerm = searchTerm.toLowerCase();
-            results = results.filter(
-                (p) =>
-                    p.name.toLowerCase().includes(lowercasedTerm) ||
-                    p.id.toLowerCase().includes(lowercasedTerm) ||
-                    (
-                        p.client?.name &&
-                        p.client.name.toLowerCase().includes(lowercasedTerm)
-                    )(
-                        p.client?.razaoSocial &&
-                            p.client.razaoSocial
-                                .toLowerCase()
-                                .includes(lowercasedTerm)
-                    )
-            );
-        }
+    //     if (searchTerm) {
+    //         const lowercasedTerm = searchTerm.toLowerCase();
+    //         results = results.filter(
+    //             (p) =>
+    //                 p.name.toLowerCase().includes(lowercasedTerm) ||
+    //                 p.id.toLowerCase().includes(lowercasedTerm) ||
+    //                 (
+    //                     p.client?.name &&
+    //                     p.client.name.toLowerCase().includes(lowercasedTerm)
+    //                 )(
+    //                     p.client?.razaoSocial &&
+    //                         p.client.razaoSocial
+    //                             .toLowerCase()
+    //                             .includes(lowercasedTerm)
+    //                 )
+    //         );
+    //     }
 
-        if (statusFilters.length > 0) {
-            results = results.filter((p) => statusFilters.includes(p.status));
-        }
+    //     if (statusFilters.length > 0) {
+    //         results = results.filter((p) => statusFilters.includes(p.status));
+    //     }
 
-        setFilteredProjects(results);
-    }, [searchTerm, allProjects, statusFilters]);
+    //     setFilteredProjects(results);
+    // }, [searchTerm, allProjects, statusFilters]);
 
-    // Executa a filtragem
+    // // Executa a filtragem
+    // useEffect(() => {
+    //     if (user) {
+    //         const fetchFunction =
+    //             user.role === "admin"
+    //                 ? getAllProjectsWithData
+    //                 : () => getProjectsForUser(user);
+    //         fetchFunction().then((data) => {
+    //             setAllProjects(data);
+    //             setFilteredProjects(data);
+    //         });
+    //     }
+    // }, [user]);
+
     useEffect(() => {
         if (user) {
+            // Define qual função usar para buscar os projetos iniciais
             const fetchFunction =
                 user.role === "admin"
                     ? getAllProjectsWithData
                     : () => getProjectsForUser(user);
+
             fetchFunction().then((data) => {
                 setAllProjects(data);
-                setFilteredProjects(data);
+
+                let results = [...data];
+                const lowercasedTerm = searchTerm.toLowerCase();
+
+                // Aplica filtro de pesquisa (searchTerm)
+                if (lowercasedTerm) {
+                    results = results.filter((p) => {
+                        const clientName =
+                            p.client?.name || p.client?.razaoSocial || "";
+                        const employeeName = p.employee?.name || "";
+
+                        return (
+                            p.name.toLowerCase().includes(lowercasedTerm) ||
+                            p.id
+                                .toString()
+                                .toLowerCase()
+                                .includes(lowercasedTerm) ||
+                            clientName.toLowerCase().includes(lowercasedTerm) ||
+                            employeeName.toLowerCase().includes(lowercasedTerm)
+                        );
+                    });
+                }
+
+                // Aplica filtro de status
+                if (statusFilters.length > 0) {
+                    results = results.filter((p) =>
+                        statusFilters.includes(p.status)
+                    );
+                }
+
+                setFilteredProjects(results);
             });
         }
-    }, [user]);
+    }, [user, searchTerm, statusFilters]); // Roda o efeito quando os filtros mudam
 
     const handleRowClick = (projectId) => {
         navigate(`/${user.role}/projeto/${projectId}`);
+    };
+
+    // NOVO: Define o placeholder dinamicamente
+    const getPlaceholderText = () => {
+        if (user.role === "client") {
+            return "Pesquise pelo nome/ID do projeto ou do funcionário";
+        }
+        return "Pesquise pelo nome/ID do projeto ou do cliente";
     };
 
     return (
@@ -194,7 +247,7 @@ const SearchPage = () => {
             <FilterBar>
                 <SearchInput
                     type="text"
-                    placeholder="Pesquise pelo nome/ID do projeto ou do cliente"
+                    placeholder={getPlaceholderText()}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />

@@ -93,26 +93,53 @@ const ClientHomePage = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     if (user) {
+    //         getProjectsForUser(user).then((data) => {
+    //             const activeProjects = data.filter(
+    //                 (p) => p.status !== "Concluído"
+    //             );
+    //             const sortedProjects = activeProjects.sort(
+    //                 (a, b) => new Date(a.startDate) - new Date(b.startDate)
+    //             );
+    //             setProjects(sortedProjects.slice(0, 5));
+    //         });
+    //     }
+    // }, [user]);
+
+    // const projectCounts = useMemo(() => {
+    //     return projects.reduce((acc, project) => {
+    //         acc[project.status] = (acc[project.status] || 0) + 1;
+    //         return acc;
+    //     }, {});
+    // }, [projects]);
+
+    const [allProjects, setAllProjects] = useState([]); // NOVO
+    const [recentProjects, setRecentProjects] = useState([]); // NOVO
+
     useEffect(() => {
         if (user) {
             getProjectsForUser(user).then((data) => {
+                setAllProjects(data); // Guarda todos os projetos para os cards
+
                 const activeProjects = data.filter(
                     (p) => p.status !== "Concluído"
                 );
                 const sortedProjects = activeProjects.sort(
                     (a, b) => new Date(a.startDate) - new Date(b.startDate)
                 );
-                setProjects(sortedProjects.slice(0, 5));
+                setRecentProjects(sortedProjects.slice(0, 5));
             });
         }
     }, [user]);
 
     const projectCounts = useMemo(() => {
-        return projects.reduce((acc, project) => {
+        // Agora faz a contagem a partir de TODOS os projetos
+        return allProjects.reduce((acc, project) => {
             acc[project.status] = (acc[project.status] || 0) + 1;
             return acc;
         }, {});
-    }, [projects]);
+    }, [allProjects]);
 
     const handleRowClick = (projectId) =>
         navigate(`/client/projeto/${projectId}`);
@@ -173,7 +200,7 @@ const ClientHomePage = () => {
                                 </tr>
                             )
                         )} */}
-                        {projects.map((project) => (
+                        {recentProjects.map((project) => (
                             <tr
                                 key={project.id}
                                 onClick={() => handleRowClick(project.id)}

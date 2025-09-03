@@ -87,12 +87,14 @@ const PeopleList = ({ people, searchTerm, navigate }) => {
 
     const filteredPeople = useMemo(
         () =>
-            people.filter((person) =>
-                (person.name || person.razaoSocial || "")
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-            ),
-        [people, searchTerm]
+            Array.isArray(people)
+                ? people.filter((person) =>
+                      (person.name || person.razaoSocial || "")
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())
+                  )
+                : [],
+        [(people, searchTerm)]
     );
 
     return (

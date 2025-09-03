@@ -80,6 +80,7 @@ const EditPersonPage = () => {
                     cpf: data.cpf || "",
                     cnpj: data.cnpj || "",
                     phone: data.phone || "",
+                    email: data.email || "",
                 });
             }
             setLoading(false);
@@ -106,9 +107,8 @@ const EditPersonPage = () => {
 
     return (
         <FormWrapper>
-            <Title>Editar Usuário</Title>
+            <Title>Editar: {person.name || person.razaoSocial}</Title>
             <Form onSubmit={handleSubmit}>
-                {/* Renderização condicional dos campos */}
                 {person.role === "client" && person.cpf && (
                     <>
                         <FormGroup>
@@ -169,6 +169,17 @@ const EditPersonPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                    />
+                </FormGroup>
+
+                <FormGroup fullWidth>
+                    <Label>Email</Label>
+                    <Input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                     />
                 </FormGroup>
 

@@ -6,6 +6,8 @@ import {
 } from "../../../services/projectService";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
+import { FaBell } from "react-icons/fa";
+import ProjectNotificationsPanel from "../../../components/layout/ProjectNotificationsPanel";
 
 const FilterPanel = styled.div`
     width: 100%;
@@ -122,6 +124,9 @@ const SearchPage = () => {
     const [statusFilters, setStatusFilters] = useState([]);
     const navigate = useNavigate();
 
+    const [isPanelOpen, setIsPanelOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState(null);
+
     const handleStatusChange = (status) => {
         setStatusFilters(
             (prev) =>
@@ -231,6 +236,12 @@ const SearchPage = () => {
 
     const handleRowClick = (projectId) => {
         navigate(`/${user.role}/projeto/${projectId}`);
+    };
+
+    const handleNotificationClick = (project, event) => {
+        event.stopPropagation(); // Impede que o clique na linha seja acionado
+        setSelectedProject(project);
+        setIsPanelOpen(true);
     };
 
     // NOVO: Define o placeholder dinamicamente
@@ -456,6 +467,7 @@ const SearchPage = () => {
                                 </>
                             )}
                             <th>Status</th>
+                            <th>Notificações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -491,6 +503,18 @@ const SearchPage = () => {
                                     <StatusBadge status={project.status}>
                                         {project.status}
                                     </StatusBadge>
+                                </td>
+                                <td
+                                    onClick={(e) =>
+                                        handleNotificationClick(project, e)
+                                    }
+                                >
+                                    <FaBell
+                                        style={{
+                                            cursor: "pointer",
+                                            fontSize: "18px",
+                                        }}
+                                    />
                                 </td>
                             </tr>
                         ))}

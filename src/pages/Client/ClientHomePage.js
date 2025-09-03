@@ -4,6 +4,8 @@ import { getProjectsForUser } from "../../services/projectService";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import StatCard from "../../components/cards/StatCard";
+import { FaBell } from "react-icons/fa";
+import ProjectNotificationsPanel from "../../components/layout/ProjectNotificationsPanel";
 
 // Copie os styled-components da EmployeeHomePage
 const Title = styled.h1`
@@ -93,6 +95,9 @@ const ClientHomePage = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
 
+    const [isPanelOpen, setIsPanelOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState(null);
+
     // useEffect(() => {
     //     if (user) {
     //         getProjectsForUser(user).then((data) => {
@@ -144,6 +149,12 @@ const ClientHomePage = () => {
     const handleRowClick = (projectId) =>
         navigate(`/client/projeto/${projectId}`);
 
+    const handleNotificationClick = (project, event) => {
+        event.stopPropagation(); // Impede que o clique na linha seja acionado
+        setSelectedProject(project);
+        setIsPanelOpen(true);
+    };
+
     return (
         <div>
             <Title>Seus Projetos</Title>
@@ -177,6 +188,7 @@ const ClientHomePage = () => {
                             <th>Funcionário Responsável</th>
                             <th>Telefone do Funcionário</th>
                             <th>Status</th>
+                            <th>Notificações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -214,6 +226,18 @@ const ClientHomePage = () => {
                                         {project.status}
                                     </StatusBadge>
                                 </td>
+                                <td
+                                    onClick={(e) =>
+                                        handleNotificationClick(project, e)
+                                    }
+                                >
+                                    <FaBell
+                                        style={{
+                                            cursor: "pointer",
+                                            fontSize: "18px",
+                                        }}
+                                    />
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -225,6 +249,15 @@ const ClientHomePage = () => {
                     Ver Todos os Projetos
                 </ActionButton>
             </ButtonsContainer>
+
+            {selectedProject && (
+                <ProjectNotificationsPanel
+                    isOpen={isPanelOpen}
+                    onClose={() => setIsPanelOpen(false)}
+                    projectId={selectedProject.id}
+                    projectName={selectedProject.name}
+                />
+            )}
         </div>
     );
 };

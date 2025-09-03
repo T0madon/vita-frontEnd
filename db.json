@@ -271,7 +271,7 @@
       "description": "Proj ezequiel",
       "employeeId": 1756298004565,
       "status": "Em Andamento",
-      "activeStepIndex": 1,
+      "activeStepIndex": 2,
       "steps": [
         {
           "id": 1,
@@ -546,20 +546,6 @@
       "createdAt": "2025-08-30T17:28:48.441Z"
     },
     {
-      "id": "f34e",
-      "userId": "3",
-      "message": "O usuário um dois três (ID: 1756338163903) solicitou as seguintes alterações de perfil:\n- razaoSocial: de \"um dois três\" para \"um dois três quatro\"\n- cnpj: de \"48.481.061/0001-45\" para \"48.481.061/0001-44\"\n- phone: de \"(44) 99881-9791\" para \"(44) 99881-9792\"",
-      "read": false,
-      "createdAt": "2025-09-02T00:32:26.033Z"
-    },
-    {
-      "id": "c2ca",
-      "userId": "3",
-      "message": "O usuário um dois três (ID: 1756338163903) solicitou as seguintes alterações de perfil:\n- razaoSocial: de \"um dois três\" para \"um dois três a\"\n- cnpj: de \"48.481.061/0001-45\" para \"48.481.061/0001-44\"\n- phone: de \"(44) 99881-9791\" para \"(44) 99881-9792\"",
-      "read": false,
-      "createdAt": "2025-09-02T00:34:51.626Z"
-    },
-    {
       "id": "5fc8",
       "userId": 1756298004565,
       "message": "O projeto \"jaime 1\" avançou para a etapa \"Conclusão\".",
@@ -712,13 +698,6 @@
       "createdAt": "2025-09-02T11:48:52.002Z"
     },
     {
-      "id": "4dae",
-      "userId": "3",
-      "message": "O usuário Ezequiel (ID: 1756819657554) solicitou as seguintes alterações de perfil:\n- name: de \"Ezequiel\" para \"Ezequiel G\"\n- cpf: de \"088.601.089-69\" para \"088.601.089-12\"\n- phone: de \"(44) 99881-9791\" para \"(44) 99881-9712\"",
-      "read": false,
-      "createdAt": "2025-09-02T13:29:20.416Z"
-    },
-    {
       "id": "649c",
       "userId": 1756298004565,
       "message": "O projeto \"Proj do ezeq\" foi criado com sucesso.",
@@ -773,6 +752,46 @@
       "projectId": "889f",
       "read": false,
       "createdAt": "2025-09-02T13:46:18.179Z"
+    },
+    {
+      "id": "e6a6",
+      "userId": 1756298004565,
+      "message": "O projeto \"Proj do ezeq\" avançou para a etapa \"Fundação\".",
+      "projectId": "5907",
+      "read": false,
+      "createdAt": "2025-09-03T01:42:42.334Z"
+    },
+    {
+      "id": "8722",
+      "userId": 1756819657554,
+      "message": "O projeto \"Proj do ezeq\" avançou para a etapa \"Fundação\".",
+      "projectId": "5907",
+      "read": false,
+      "createdAt": "2025-09-03T01:42:42.347Z"
+    },
+    {
+      "id": "9c2d",
+      "userId": "3",
+      "message": "O projeto \"Proj do ezeq\" avançou para a etapa \"Fundação\".",
+      "projectId": "5907",
+      "read": false,
+      "createdAt": "2025-09-03T01:42:42.364Z"
+    },
+    {
+      "id": "c10f",
+      "userId": "3",
+      "message": "O usuário Ezequiel G (ID: 1756819657554) solicitou as seguintes alterações de perfil:\n- name: de \"Ezequiel G\" para \"Ezequiel Gueiber\"",
+      "projectId": null,
+      "read": false,
+      "createdAt": "2025-09-03T02:16:09.906Z"
+    },
+    {
+      "id": "f925",
+      "userId": "3",
+      "message": "O usuário funcio by adm (ID: 1756298004565) solicitou as seguintes alterações de perfil:\n- name: de \"funcio by adm\" para \"funcio by admm\"",
+      "projectId": null,
+      "read": false,
+      "createdAt": "2025-09-03T02:18:34.751Z"
     }
   ]
 }

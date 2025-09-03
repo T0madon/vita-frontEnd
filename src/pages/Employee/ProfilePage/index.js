@@ -307,7 +307,11 @@ const ProfilePage = () => {
         try {
             // Envia notificação para cada administrador
             for (const admin of admins) {
-                await createNotification({ userId: admin.id, message });
+                await createNotification({
+                    userId: admin.id,
+                    message,
+                    projectId: null,
+                });
             }
             alert("Sua solicitação de alteração foi enviada ao administrador!");
         } catch (error) {

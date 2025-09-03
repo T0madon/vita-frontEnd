@@ -24,3 +24,13 @@ export const addDocument = async (documentData) => {
         throw error;
     }
 };
+
+export const deleteDocument = async (documentId) => {
+    try {
+        const response = await api.delete(`/documents/${documentId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao deletar documento:", error);
+        throw error;
+    }
+};

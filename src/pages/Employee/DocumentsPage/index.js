@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import {
     getDocumentsForStep,
     addDocument,
+    deleteDocument,
 } from "../../../services/documentService";
 import { useAuth } from "../../../contexts/AuthContext";
-import { FaEye, FaCheck, FaTimes, FaTrash } from "react-icons/fa";
+import { FaEye, FaTrash } from "react-icons/fa";
 
 // --- Styled Components ---
 const PageLayout = styled.div`
@@ -92,6 +93,18 @@ const DocumentsPage = () => {
         alert("Documento adicionado!");
     };
 
+    const handleDeleteDocument = async (documentId) => {
+        if (window.confirm("Tem certeza que deseja excluir este documento?")) {
+            try {
+                await deleteDocument(documentId);
+                alert("Documento excluído com sucesso!");
+                loadDocuments(); // Recarrega a lista
+            } catch (error) {
+                alert("Erro ao excluir o documento.");
+            }
+        }
+    };
+
     // const handleAddLink = async (e) => {
     //     e.preventDefault();
     //     if (!link) return;
@@ -120,7 +133,7 @@ const DocumentsPage = () => {
                             <tr>
                                 <th align="left">Nome</th>
                                 <th align="left">Enviado por</th>
-                                {/* <th align="left">Ações</th> */}
+                                <th align="left">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -138,24 +151,18 @@ const DocumentsPage = () => {
                                         >
                                             <FaEye />
                                         </a>
-                                        {/* <FaCheck
-                                            style={{
-                                                cursor: "pointer",
-                                                color: "green",
-                                            }}
-                                        />
-                                        <FaTimes
-                                            style={{
-                                                cursor: "pointer",
-                                                color: "orange",
-                                            }}
-                                        />
-                                        <FaTrash
-                                            style={{
-                                                cursor: "pointer",
-                                                color: "red",
-                                            }}
-                                        /> */}
+                                        {(user.role === "admin" ||
+                                            user.role === "employee") && (
+                                            <FaTrash
+                                                style={{
+                                                    cursor: "pointer",
+                                                    color: "red",
+                                                }}
+                                                onClick={() =>
+                                                    handleDeleteDocument(doc.id)
+                                                }
+                                            />
+                                        )}
                                     </td>
                                 </tr>
                             ))}
@@ -196,7 +203,6 @@ const DocumentsPage = () => {
                             </label>
                         </UploadTypeSelector>
 
-                        {/* Renderização condicional do campo de input */}
                         {uploadType === "link" ? (
                             <input
                                 type="url"

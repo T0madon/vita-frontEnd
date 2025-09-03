@@ -40,3 +40,20 @@ export const createNotification = (notificationData) => {
     };
     return api.post("/notifications", dataWithTimestamp);
 };
+
+/**
+ * Busca todas as notificações para um projeto específico.
+ * @param {string} projectId O ID do projeto.
+ * @returns {Promise<Array>} Lista de notificações do projeto.
+ */
+export const getNotificationsForProject = async (projectId) => {
+    try {
+        const response = await api.get(
+            `/notifications?projectId=${projectId}&_sort=createdAt&_order=desc`
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar notificações do projeto:", error);
+        return [];
+    }
+};
